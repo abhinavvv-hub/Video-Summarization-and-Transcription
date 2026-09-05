@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summarizer - AI Powered</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="16" cy="16" r="16" fill="url(#logoGradient)"/>
+                    <path d="M9 12L16 8L23 12V20L16 24L9 20V12Z" fill="white" fill-opacity="0.9"/>
+                    <circle cx="16" cy="16" r="3" fill="#6366f1"/>
+                </svg>
+                <h1>Lecture Summarizer</h1>
+            </div>
+            <p class="subtitle">Transform your lectures into clear, structured summaries</p>
+        </header>
+
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="videoInput" accept=".mp4,.avi,.mov,.mkv,.wav,.mp3,.m4a,.webm" hidden>
+                <div class="upload-content">
+                    <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h2>Drop your video here</h2>
+                    <p>or click to browse</p>
+                    <p class="file-types">MP4, AVI, MOV, MKV, WAV, MP3</p>
+                </div>
+            </div>
+            <div class="file-info" id="fileInfo" style="display: none;">
+                <div class="file-details">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                        <line x1="7" y1="2" x2="7" y2="22"></line>
+                        <line x1="17" y1="2" x2="17" y2="22"></line>
+                        <line x1="2" y1="7" x2="7" y2="7"></line>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <line x1="2" y1="17" x2="7" y2="17"></line>
+                    </svg>
+                    <span id="fileName"></span>
+                </div>
+                <button class="remove-file" id="removeFile">✕</button>
+            </div>
+            <button class="process-btn" id="processBtn" disabled>
+                <span class="btn-text">Process Video</span>
+                <span class="loading-spinner" style="display: none;"></span>
+            </button>
+        </div>
+
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text" id="progressText">Processing video...</p>
+            <p class="progress-text" style="font-size: 0.875rem; opacity: 0.7;">This may take a few minutes</p>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="result-cards">
+                <div class="card overview-card">
+                    <h3>📋 Overview</h3>
+                    <div class="card-content" id="overviewContent"></div>
+                </div>
+                
+                <div class="card takeaways-card">
+                    <h3>🎯 Key Takeaways</h3>
+                    <ul class="card-content" id="takeawaysContent"></ul>
+                </div>
+                
+                <div class="card points-card">
+                    <h3>📌 Important Points</h3>
+                    <div class="card-content" id="pointsContent"></div>
+                </div>
+                
+                <div class="card advice-card">
+                    <h3>💡 Actionable Advice</h3>
+                    <ul class="card-content" id="adviceContent"></ul>
+                </div>
+                
+                <div class="card summary-card">
+                    <h3>📝 Final Summary</h3>
+                    <div class="card-content" id="summaryContent"></div>
+                </div>
+            </div>
+            
+            <button class="reset-btn" id="resetBtn">← Process Another Video</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
